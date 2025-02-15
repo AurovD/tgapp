@@ -5,7 +5,7 @@ import {useTelegram} from "@/utils/useTelegram";
 export default function HomePage() {
     const { data, isLoading } = trpc.hello.useQuery({ name: 'Dmitry' });
 
-    const { tg} = useTelegram();
+    const { tg, user, close } = useTelegram();
 
     useEffect(() => {
         if (tg) {
