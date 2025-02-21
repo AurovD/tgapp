@@ -3,9 +3,13 @@ import { httpBatchLink } from '@trpc/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Head from "next/head";
 import Script from "next/script";
+import {AppProps} from "next/app";
 const queryClient = new QueryClient();
 
-export default function MyApp({ Component, pageProps }: any) {
+export default function MyApp({ Component, pageProps }: AppProps) {
+
+
+    //useeff, useref client
 
     return (
         <trpc.Provider

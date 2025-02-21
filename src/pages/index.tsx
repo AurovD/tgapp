@@ -5,10 +5,10 @@ import {useTelegram} from "@/utils/useTelegram";
 export default function HomePage() {
     const { data, isLoading } = trpc.hello.useQuery({ name: 'Dmitry' });
 
-    const { tg, user, close } = useTelegram();
+    const { tg } = useTelegram();
 
     useEffect(() => {
-        if (tg) {
+        if (tg?.expand) {
             tg.expand();
         }
     }, [tg]);
@@ -17,3 +17,6 @@ export default function HomePage() {
 
     return <h1>{data?.message}</h1>;
 }
+
+//docker buildx build --platform linux/amd64 -t aurovdm/tgapp:1.0.0 .
+// docker buildx build --platform linux/amd64,linux/arm64 -t aurovdm/tgapp:1.0 .

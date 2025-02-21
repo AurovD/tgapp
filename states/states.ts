@@ -15,12 +15,11 @@ export type Types = {
 }
 
 export type Item = {
-    releaseDate: Date;
+    releaseDate: string;
     description: string;
-    type: Types;
+    type: keyof Types;
     status: ReleasedState | PendingState;
 }
-
 
 export type User = {
     _id: string;
