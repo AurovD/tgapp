@@ -11,7 +11,7 @@ const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || "7703008999:AAHJufwwUVYzJEyp
 const bot = new Telegraf(BOT_TOKEN);
 
 bot.command('start', (ctx) => {
-    const url = "https://192.168.0.51:3000";
+    const url = "https://tgapp-dohv.onrender.com/";
 
     const keyboard = Markup.inlineKeyboard([
         [Markup.button.webApp('Открыть приложение', url)]
@@ -26,7 +26,7 @@ const appRouter = t.router({
 
     hello: t.procedure.input(z.object({ name: z.string() })).query(({ input }) => {
         try {
-            return { message: `Hello, ${input.name}!` };
+            return { message: `Hello, ${input.name}!!!!` };
         } catch (e){
             console.log(e);
         }
