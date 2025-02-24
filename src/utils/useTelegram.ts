@@ -39,7 +39,7 @@ export function useTelegram() {
 
     return {
         tg,
-        user: tg?.initDataUnsafe?.user || null, // Типизированный доступ к user
+        user: tg?.initDataUnsafe?.user || null,
         close: () => tg?.close(),
     };
 }

@@ -5,13 +5,14 @@ import {useTelegram} from "@/utils/useTelegram";
 export default function HomePage() {
     const { data, isLoading } = trpc.hello.useQuery({ name: 'Dmitry' });
 
-    const { tg } = useTelegram();
+    const { tg, user } = useTelegram();
 
     useEffect(() => {
         if (tg?.expand) {
+            console.log(user);
             tg.expand();
         }
-    }, [tg]);
+    }, [tg, user]);
 
     if (isLoading) return <p>Loading...</p>;
 
