@@ -28,7 +28,7 @@ export function useTelegram() {
 
     useEffect(() => {
         const telegram = (window as WindowWithTelegram).Telegram?.WebApp;
-
+        console.log(telegram, "ljljlj");
         if (telegram) {
             setTg(telegram);
             telegram.ready(); // Вызываем ready(), только если WebApp доступен

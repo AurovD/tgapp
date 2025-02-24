@@ -16,7 +16,7 @@ export default function HomePage() {
     if (isLoading) return <p>Loading...</p>;
     return (<>
         <h1>{data?.message}</h1>
-        {user ? JSON.stringify(user) : null}
+        {user ? JSON.stringify(user) : <div>?</div>}
     </>);
 }
 
