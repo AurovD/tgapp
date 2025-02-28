@@ -13,14 +13,18 @@ const bot = new Telegraf(BOT_TOKEN);
 bot.command('start', (ctx) => {
     const url = "https://tgapp-dohv.onrender.com/";
 
-    console.log(ctx);
+    const user = ctx.from;
 
+    console.log("Информация о пользователе:", user);
 
     const keyboard = Markup.inlineKeyboard([
-        [Markup.button.webApp('Открыть приложение', url)]
+        [Markup.button.webApp("Открыть приложение", url)]
     ]);
 
-    ctx.reply('Нажми на кнопку, чтобы продолжить!', keyboard);
+    ctx.reply(
+        `Привет, ${user.first_name}! 👋\nНажми на кнопку, чтобы продолжить.`,
+        keyboard
+    );
 });
 
 bot.launch();
