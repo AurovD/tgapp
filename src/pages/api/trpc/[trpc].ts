@@ -13,6 +13,9 @@ const bot = new Telegraf(BOT_TOKEN);
 bot.command('start', (ctx) => {
     const url = "https://tgapp-dohv.onrender.com/";
 
+    console.log(ctx);
+
+
     const keyboard = Markup.inlineKeyboard([
         [Markup.button.webApp('Открыть приложение', url)]
     ]);
