@@ -17,13 +17,14 @@ bot.command('start', async (ctx) => {
     console.log('Информация о пользователе:', user);
 
 
+    localStorage.setItem('chatId', user.id.toString());
+
+
     try {
         const newUser = await db.collection('users').insertOne({ login: user.username });
         console.log(newUser);
-        // return { message: 'Пользователь добавлен', userId: newUser.insertedId };
     } catch (e) {
         console.log('Ошибка при добавлении пользователя:', e);
-        // throw new Error('Ошибка при добавлении пользователя');
     }
 
     const keyboard = Markup.inlineKeyboard([
@@ -35,7 +36,5 @@ bot.command('start', async (ctx) => {
         keyboard
     );
 });
-
-bot.launch();
 
 export { bot };
