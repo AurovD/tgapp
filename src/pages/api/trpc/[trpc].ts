@@ -5,7 +5,6 @@ import { appRouter } from '@/utils/api';
 
 import { Markup, Telegraf } from 'telegraf';
 import { db } from '@/utils/db';
-import {log} from "node:util";
 
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 
