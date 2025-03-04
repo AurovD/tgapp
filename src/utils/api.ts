@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 const t = initTRPC.create();
 
-const appRouter = t.router({
+const router = t.router({
     hello: t.procedure.input(z.object({ name: z.string() })).query(({ input }) => {
         try {
             console.log('hello');
@@ -13,7 +13,7 @@ const appRouter = t.router({
         }
     }),
 });
-
-export type AppRouter = typeof appRouter;
-
-export { appRouter };
+//
+// export type AppRouter = typeof appRouter;
+//
+export { router };
