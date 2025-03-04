@@ -1,33 +1,57 @@
 import { initTRPC } from '@trpc/server';
 import { createNextApiHandler } from '@trpc/server/adapters/next';
 import { z } from 'zod';
-import {Markup, Telegraf} from "telegraf";
+import {Telegraf} from "telegraf";
+import { db } from "@/utils/db";
+
+
 
 const t = initTRPC.create();
 
 
+const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 
-const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || "7703008999:AAHJufwwUVYzJEypgaLiaG8ImEbPgfflvkQ";
+
+if (!BOT_TOKEN) {
+    throw new Error("TELEGRAM_BOT_TOKEN is not defined");
+}
+
 const bot = new Telegraf(BOT_TOKEN);
 
-bot.command('start', (ctx) => {
-    const url = "https://tgapp-dohv.onrender.com/";
+
+bot.command('start', async (ctx) => {
+    // const url = "https://tgapp-dohv.onrender.com/";
 
     const user = ctx.from;
 
     console.log("Информация о пользователе:", user);
 
-    const keyboard = Markup.inlineKeyboard([
-        [Markup.button.webApp("Открыть приложение", url)]
-    ]);
+    try {
+        const newUser = await db.collection('users').insertOne({ login: user.username });
+        return { message: "Пользователь добавлен", userId: newUser.insertedId };
+    } catch (e) {
+        console.log("Ошибка при добавлении пользователя:", e);
+        throw new Error("Ошибка при добавлении пользователя");
+    }
 
-    ctx.reply(
-        `Привет, ${user.first_name}! 👋\nНажми на кнопку, чтобы продолжить.`,
-        keyboard
-    );
+
+
+    // const keyboard = Markup.inlineKeyboard([
+    //     [Markup.button.webApp("Открыть приложение", url)]
+    // ]);
+
+    // ctx.reply(
+    //     `Привет, ${user.first_name}! 👋\nНажми на кнопку, чтобы продолжить.`,
+    //     keyboard
+    // );
 });
 
 bot.launch();
+
+
+
+
+// mongodb+srv://<root>:<ldmgzcP1C9UDzEBO>@cluster0.fhosm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 
 const appRouter = t.router({
 
