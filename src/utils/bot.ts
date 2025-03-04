@@ -17,7 +17,7 @@ bot.command('start', async (ctx) => {
     console.log('Информация о пользователе:', user);
 
 
-    localStorage.setItem('chatId', user.id.toString());
+    // localStorage.setItem('chatId', user.id.toString());
 
 
     try {

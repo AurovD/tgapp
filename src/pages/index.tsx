@@ -7,6 +7,6 @@ export default function HomePage() {
 
     if (isLoading) return <p>Loading...</p>;
     return (<>
-        <h1>{data?.message}лолр</h1>
+        <h1>{data?.message}</h1>
     </>);
 }
