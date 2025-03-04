@@ -19,10 +19,10 @@ bot.command('start', async (ctx) => {
 
     try {
         const newUser = await db.collection('users').insertOne({ login: user.username });
-        return { message: 'Пользователь добавлен', userId: newUser.insertedId };
+        // return { message: 'Пользователь добавлен', userId: newUser.insertedId };
     } catch (e) {
         console.log('Ошибка при добавлении пользователя:', e);
-        throw new Error('Ошибка при добавлении пользователя');
+        // throw new Error('Ошибка при добавлении пользователя');
     }
 
     const keyboard = Markup.inlineKeyboard([

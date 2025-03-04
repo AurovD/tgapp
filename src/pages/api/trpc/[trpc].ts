@@ -41,22 +41,6 @@ bot.command('start', async (ctx) => {
 });
 
 bot.launch();
-// import { initTRPC } from '@trpc/server';
-// const t = initTRPC.create();
-// import { z } from 'zod';
-//
-// const appRouter = t.router({
-//
-//     hello: t.procedure.input(z.object({ name: z.string() })).query(({ input }) => {
-//         try {
-//             console.log("hello");
-//             return { message: `Hello, ${input.name}!!!!` };
-//         } catch (e){
-//             console.log(e);
-//         }
-//     }),
-// });
-
 
 export type AppRouter = typeof router;
 

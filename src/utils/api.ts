@@ -13,7 +13,5 @@ const router = t.router({
         }
     }),
 });
-//
-// export type AppRouter = typeof appRouter;
-//
+
 export { router };
