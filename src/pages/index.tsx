@@ -28,7 +28,6 @@ declare global {
 
 export default function HomePage() {
     const [user, setUser] = useState<TelegramUser | null>(null);
-    const { data, isLoading } = trpc.hello.useQuery({ name: "Dmitry" });
     const sendUserData = trpc.user.useMutation(); // Вызов мутации для отправки данных
 
     useEffect(() => {
@@ -38,6 +37,7 @@ export default function HomePage() {
                 setUser(userData);
 
                 sendUserData.mutate({
+                    id: userData.id,
                     name: userData.first_name,
                     username: userData.username || "Без логина",
                 });
@@ -45,13 +45,13 @@ export default function HomePage() {
         }
     }, []);
 
-    if (isLoading) return <p>Loading...</p>;
-    return (<>
-        <h1>{data?.message}</h1>
+    return (
+        <>
         {user ? (
             <p>Привет, {user.first_name}!</p>
         ) : (
             <p>Загрузка данных пользователя...</p>
         )}
-    </>);
+    </>
+    );
 }
