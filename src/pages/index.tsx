@@ -44,7 +44,7 @@ export default function HomePage() {
                 });
             }
         }
-    }, [sendUserData]);
+    }, []);
 
     if (isLoading) return <p>Loading...</p>;
     return (<>
