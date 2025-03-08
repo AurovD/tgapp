@@ -1,5 +1,5 @@
 import { trpc } from '@/utils/trpc';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 
 
@@ -27,23 +27,24 @@ declare global {
 }
 
 export default function HomePage() {
-    const { data, isLoading } = trpc.hello.useQuery({ name: 'Dmitry' });
     const [user, setUser] = useState<TelegramUser | null>(null);
+    const { data, isLoading } = trpc.hello.useQuery({ name: "Dmitry" });
+    const sendUserData = trpc.user.useMutation(); // Вызов мутации для отправки данных
 
-    const handleGetUser = () => {
+    useEffect(() => {
         if (window.Telegram?.WebApp) {
-            console.log(window.Telegram)
             const userData = window.Telegram.WebApp.initDataUnsafe?.user;
             if (userData) {
                 setUser(userData);
-            } else {
-                alert("Пользователь не найден");
-            }
-        } else {
-            alert("Telegram WebApp не доступен");
-        }
-    };
 
+                // Отправляем данные пользователя на сервер
+                sendUserData.mutate({
+                    name: userData.first_name,
+                    username: userData.username || "Без логина",
+                });
+            }
+        }
+    }, [sendUserData]);
 
     if (isLoading) return <p>Loading...</p>;
     return (<>
@@ -51,7 +52,7 @@ export default function HomePage() {
         {user ? (
             <p>Привет, {user.first_name}!</p>
         ) : (
-            <button onClick={handleGetUser}>Получить пользователя</button>
+            <p>Загрузка данных пользователя...</p>
         )}
     </>);
 }

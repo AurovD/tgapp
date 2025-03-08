@@ -22,6 +22,12 @@ const router = t.router({
             console.log(e);
         }
     }),
+    user: t.procedure
+        .input(z.object({ name: z.string(), username: z.string() }))
+        .mutation(async ({ input }) => {
+            console.log("Полученные данные:", input);
+            return { success: true };
+        }),
     // getUser: publicProcedure
     //     .input(getUserSchema) // Теперь используем схему
     //     .query(async ({ input }: { input: GetUserInput }) => {
