@@ -22,6 +22,7 @@ export type Item = {
 }
 
 export type User = {
-    _id: string;
-    login: string;
+    id: number;
+    firstName: string;
+    username: string;
 }
