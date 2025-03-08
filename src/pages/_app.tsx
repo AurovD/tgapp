@@ -19,7 +19,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             queryClient={queryClient}
         >
             <QueryClientProvider client={queryClient}>
-                <Script src="https://telegram.org/js/telegram-web-app.js?56" />
+                <Script strategy={"beforeInteractive"} src="https://telegram.org/js/telegram-web-app.js?56" />
                 <Head>
                     <title>TGApp</title>
                 </Head>

@@ -40,6 +40,9 @@ import { bot } from '@/utils/bot';
 //     );
 // });
 
+
+// window.Telegram.WebApp
+
 bot.launch()
     .then(() => console.log('Telegram bot started!'))
     .catch((err) => console.error('Error launching bot:', err));

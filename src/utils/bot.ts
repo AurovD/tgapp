@@ -17,8 +17,6 @@ bot.command('start', async (ctx) => {
     console.log('Информация о пользователе:', user);
 
 
-    // localStorage.setItem('chatId', user.id.toString());
-
 
     try {
         const newUser = await db.collection('users').insertOne({ login: user.username });
