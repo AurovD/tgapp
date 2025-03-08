@@ -37,7 +37,6 @@ export default function HomePage() {
             if (userData) {
                 setUser(userData);
 
-                // Отправляем данные пользователя на сервер
                 sendUserData.mutate({
                     name: userData.first_name,
                     username: userData.username || "Без логина",
