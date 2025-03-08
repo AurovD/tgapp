@@ -19,13 +19,10 @@ bot.command('start', async (ctx) => {
     try {
         const existingUser = await UserModel.findOne({ id: user.id });
 
-        if (existingUser) {
-            console.log('Пользователь уже существует:', existingUser);
-        } else {
-            // Если пользователь не существует, создаем нового
+        if (!existingUser) {
             const newUser = new UserModel({
                 id: user.id,
-                firstName: user.first_name,
+                first_name: user.first_name,
                 username: user.username,
             });
 

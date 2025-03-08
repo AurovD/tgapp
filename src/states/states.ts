@@ -23,6 +23,6 @@ export type Item = {
 
 export type User = {
     id: number;
-    firstName: string;
+    first_name: string;
     username: string;
 }

@@ -1,15 +1,14 @@
 import { trpc } from '@/utils/trpc';
 import {useEffect, useState} from "react";
+import {User} from "@/states/states";
 
 
 
-interface TelegramUser {
-    id: number;
-    first_name: string;
-    last_name?: string;
-    username?: string;
-    language_code?: string;
-}
+// interface TelegramUser {
+//     id: number;
+//     firstName: string;
+//     username?: string;
+// }
 
 
 declare global {
@@ -17,7 +16,7 @@ declare global {
         Telegram: {
             WebApp: {
                 initDataUnsafe?: {
-                    user?: TelegramUser;
+                    user?: User;
                 };
                 sendData: (data: string) => void;
                 expand: () => void;
@@ -27,7 +26,7 @@ declare global {
 }
 
 export default function HomePage() {
-    const [user, setUser] = useState<TelegramUser | null>(null);
+    const [user, setUser] = useState<User | null>(null);
     const sendUserData = trpc.user.useMutation(); // Вызов мутации для отправки данных
 
     useEffect(() => {
@@ -38,7 +37,7 @@ export default function HomePage() {
 
                 sendUserData.mutate({
                     id: userData.id,
-                    name: userData.first_name,
+                    first_name: userData.first_name,
                     username: userData.username || "Без логина",
                 });
             }

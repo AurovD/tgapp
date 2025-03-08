@@ -7,7 +7,7 @@ const userSchema = new Schema<User>({
         unique: true,
         required: true,
     },
-    firstName: {
+    first_name: {
         type: String,
         required: true,
     },
