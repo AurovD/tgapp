@@ -32,6 +32,7 @@ export default function HomePage() {
 
     const handleGetUser = () => {
         if (window.Telegram?.WebApp) {
+            console.log(window.Telegram)
             const userData = window.Telegram.WebApp.initDataUnsafe?.user;
             if (userData) {
                 setUser(userData);
