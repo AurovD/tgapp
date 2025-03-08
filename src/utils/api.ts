@@ -26,6 +26,7 @@ const router = t.router({
                 }
             } catch (e) {
                 console.log('Ошибка при добавлении пользователя:', e);
+                throw new Error("Ошибка сервера, попробуйте позже.");
             }
         }),
 });

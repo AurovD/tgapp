@@ -20,6 +20,7 @@ declare global {
                 };
                 sendData: (data: string) => void;
                 expand: () => void;
+                close: () => void;
             };
         };
     }
@@ -27,11 +28,18 @@ declare global {
 
 export default function HomePage() {
     const [user, setUser] = useState<User | null>(null);
-    const sendUserData = trpc.user.useMutation(); // Вызов мутации для отправки данных
+    const sendUserData = trpc.user.useMutation({
+        onError: (error) => {
+            console.error("Ошибка при отправке данных:", error);
+            alert("Произошла ошибка. Попробуйте позже.");
+            window.Telegram?.WebApp?.close();
+        },
+    });
 
     useEffect(() => {
         if (window.Telegram?.WebApp) {
             const userData = window.Telegram.WebApp.initDataUnsafe?.user;
+            // const userData = window.Telegram.WebApp.initDataUnsafe?.user;
             if (userData) {
                 setUser(userData);
 
@@ -40,6 +48,9 @@ export default function HomePage() {
                     first_name: userData.first_name,
                     username: userData.username || "Без логина",
                 });
+            } else {
+                alert("Не удалось получить данные пользователя.");
+                window.Telegram?.WebApp?.close();
             }
         }
     }, []);
