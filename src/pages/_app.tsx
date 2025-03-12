@@ -5,7 +5,7 @@ import Head from "next/head";
 import Script from "next/script";
 import {AppProps} from "next/app";
 const queryClient = new QueryClient();
-
+import '../styles.css';
 export default function MyApp({ Component, pageProps }: AppProps) {
 
 
