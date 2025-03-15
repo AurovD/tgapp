@@ -2,6 +2,7 @@ import { trpc } from '@/utils/trpc';
 import {useEffect, useState} from "react";
 import {User} from "@/states/states";
 import Loading from "@/components/Loading";
+import Header from "@/components/Header";
 
 
 declare global {
@@ -23,7 +24,7 @@ declare global {
 //
 //     return (
 //         <>
-//             <Loading/>
+//             <Header user_name={"Привет, Дмитрий"}/>
 //     </>
 //     );
 // }
@@ -58,7 +59,7 @@ export default function HomePage() {
     return (
         <>
         {user ? (
-            <p>Привет, {user.first_name}!</p>
+            <Header user_name={user.first_name}/>
         ) : (
             <Loading></Loading>
         )}

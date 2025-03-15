@@ -3,11 +3,11 @@
 export default function Loading() {
     return (
         <>
-            <div className={"loading"}>
+            <div className={"loading d-flex j-center"}>
                 <video className='videoTag' autoPlay loop muted>
                     <source src={"video.mp4"} type='video/mp4'/>
                 </video>
-                <div className={"text"}>
+                <div className={"text d-flex j-center"}>
                         <p>Привет!</p>
                 </div>
             </div>
