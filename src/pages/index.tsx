@@ -24,7 +24,7 @@ declare global {
 //
 //     return (
 //         <>
-//             <Header user_name={"Привет, Дмитрий"}/>
+//             <Header user_name={"Дмитрий"}/>
 //     </>
 //     );
 // }

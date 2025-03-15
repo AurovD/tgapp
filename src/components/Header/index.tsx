@@ -7,8 +7,11 @@ export default function Header({user_name}: HeaderProps) {
     return (
         <div className={"header d-flex"}>
             <div>
-                <h1 className={"greeting"}>{user_name}!</h1>
-                <p>Москва, Россия</p>
+                <h1 className="greeting">
+                    <span>Привет,</span>
+                    <span>{user_name}!</span>
+                </h1>
+                <p className={"location"}>Москва, Россия</p>
             </div>
             <div>
 

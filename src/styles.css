@@ -59,6 +59,8 @@
 *::before,
 *::after {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 /* Prevent font size inflation */
@@ -245,8 +247,24 @@ body {
     }
 }
 
-/*utilities styles*/
 
+.header {
+    padding: 2.5rem 0;
+    padding-inline: 2rem;
+    container-type: inline-size;
+}
+.greeting {
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(var(--size-100), 7cqi, var(--size-900));
+}
+.location {
+    font-size: clamp(var(--size-100), 2cqi, var(--size-900));
+}
+
+
+
+/*utilities styles*/
 
 .d-flex {
     display: flex;
