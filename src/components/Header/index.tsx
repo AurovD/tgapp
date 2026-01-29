@@ -1,21 +1,24 @@
 
+import {ReactNode} from "react";
+
 interface HeaderProps {
-    user_name: string;
+    children: ReactNode;
 }
 
-export default function Header({user_name}: HeaderProps) {
+export default function Header({children}: HeaderProps) {
     return (
         <div className={"header d-flex"}>
-            <div>
-                <h1 className="greeting">
-                    <span>Привет,</span>
-                    <span>{user_name}!</span>
-                </h1>
-                <p className={"location"}>Москва, Россия</p>
-            </div>
-            <div>
-
-            </div>
+            {children}
+            {/*<div>*/}
+            {/*    <h1 className="greeting">*/}
+            {/*        <span>Привет,</span>*/}
+            {/*        <span>{user_name}!</span>*/}
+            {/*    </h1>*/}
+            {/*    <p className={"location"}>Москва, Россия</p>*/}
+            {/*</div>*/}
+            {/*<div className={"creating"}>*/}
+            {/*    <Link href="/create">Создать событие</Link>*/}
+            {/*</div>*/}
         </div>
     )
 }
