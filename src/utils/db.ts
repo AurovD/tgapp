@@ -1,10 +1,13 @@
 import mongoose from 'mongoose';
 
-const uri = `mongodb+srv://${process.env.DB_USER_NAME}:${process.env.DB_PASSWORD}@cluster0.fhosm.mongodb.net/?appName=Cluster0`;
+const { DB_USER_NAME, DB_PASSWORD } = process.env;
 
-if (!uri) {
-    throw new Error("MongoDB uri is wrong");
+if (!DB_USER_NAME || !DB_PASSWORD) {
+    throw new Error("MongoDB credentials are missing");
 }
+
+const uri = `mongodb+srv://${DB_USER_NAME}:${DB_PASSWORD}@cluster0.fhosm.mongodb.net/tgapp?retryWrites=true&w=majority`;
+
 
 const connectDb = async () => {
     try {
