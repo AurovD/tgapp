@@ -1,8 +1,9 @@
+
 import { MongoClient, ServerApiVersion } from 'mongodb';
 
 const { DB_USER_NAME, DB_PASSWORD } = process.env;
 
-if (!DB_USER_NAME || !DB_PASSWORD) {
+    if (!DB_USER_NAME || !DB_PASSWORD) {
     throw new Error('MongoDB credentials are missing');
 }
 
@@ -44,6 +45,8 @@ export { clientPromise };
 
 
 
+
+
 // import mongoose from 'mongoose';
 //
 // const { DB_USER_NAME, DB_PASSWORD } = process.env;
@@ -65,3 +68,4 @@ export { clientPromise };
 // };
 //
 // export { connectDb, mongoose };
+
