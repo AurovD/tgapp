@@ -1,5 +1,6 @@
 import  { MongoClient, ServerApiVersion } from 'mongodb';
-const uri = "mongodb+srv://<db_username>:<db_password>@cluster0.fhosm.mongodb.net/?appName=Cluster0";
+const { DB_USER_NAME, DB_PASSWORD } = process.env;
+const uri = `mongodb+srv://${DB_USER_NAME}:${DB_PASSWORD}@cluster0.fhosm.mongodb.net/?appName=Cluster0`;
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
     serverApi: {
