@@ -7,7 +7,7 @@ const { DB_USER_NAME, DB_PASSWORD } = process.env;
     throw new Error('MongoDB credentials are missing');
 }
 
-const uri = `mongodb+srv://${DB_USER_NAME}:${DB_PASSWORD}@cluster0.fhosm.mongodb.net/tgapp?retryWrites=true&w=majority&appName=Cluster0`;
+const uri = `mongodb+srv://root:FdSaXVhl8Zd8lGsf@cluster0.fhosm.mongodb.net/tgapp?retryWrites=true&w=majority&appName=Cluster0`;
 
 const options = {
     serverApi: {
