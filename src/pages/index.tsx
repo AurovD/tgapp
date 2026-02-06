@@ -67,9 +67,9 @@ export default function HomePage() {
                     </h1>
                     <p className={"location"}>Москва, Россия</p>
                 </div>
-                <div className={"creating"}>
-                    <Link href="/create">Создать событие</Link>
-                </div>
+                {/*<div className={"creating"}>*/}
+                {/*    <Link href="/create">Создать событие</Link>*/}
+                {/*</div>*/}
             </Header>
                 ) : (
                 <Loading></Loading>
