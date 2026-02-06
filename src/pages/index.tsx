@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import {User} from "@/states/states";
 import Loading from "@/components/Loading";
 import Header from "@/components/Header";
-import Link from "next/link";
+// import Link from "next/link";
 // import Create from "@/pages/create";
 
 
