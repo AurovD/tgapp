@@ -54,7 +54,7 @@ export default function HomePage() {
                 window.Telegram?.WebApp?.close();
             }
         }
-    }, []);
+    }, [sendUserData]);
 
     return (
         <>
