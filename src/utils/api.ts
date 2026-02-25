@@ -1,6 +1,6 @@
 import { initTRPC } from '@trpc/server';
 import { z } from 'zod';
-import UserModel from "@/models/userSchema";
+// import UserModel from "@/models/userSchema";
 
 const t = initTRPC.create();
 
