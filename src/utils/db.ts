@@ -43,7 +43,6 @@ const uri = `mongodb+srv://root:IZ1HKg6exYuZQRF5@cluster0.fhosm.mongodb.net/?app
 //     return client;
 // };
 
-console.log(uri);
 // const { MongoClient } = require('mongodb');
 async function runGetStarted() {
     // Replace the uri string with your connection string
@@ -56,7 +55,6 @@ async function runGetStarted() {
         const query = { title: 'Back to the Future' };
         const movie = await movies.findOne(query);
         console.log(movie);
-        console.log("khkhlkhlkh");
     } finally {
         await client.close();
     }
