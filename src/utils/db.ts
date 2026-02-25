@@ -1,14 +1,35 @@
-import mongoose from "mongoose";
+
 
 const uri = "mongodb+srv://tgapp:9tGMh4jcOJRQA3MP@cluster0.fhosm.mongodb.net/?appName=Cluster0";
+import mongoose, { Mongoose } from "mongoose";
 
-let cached = (global as any).mongoose;
 
-if (!cached) {
-    cached = (global as any).mongoose = { conn: null, promise: null };
+if (!uri) {
+    throw new Error("MONGODB_URI is not defined");
 }
 
-export async function connectDb() {
+type MongooseCache = {
+    conn: Mongoose | null;
+    promise: Promise<Mongoose> | null;
+};
+
+declare global {
+    // eslint-disable-next-line no-var
+    var mongooseCache: MongooseCache | undefined;
+}
+
+const globalWithMongoose = global as typeof globalThis & {
+    mongooseCache?: MongooseCache;
+};
+
+const cached = globalWithMongoose.mongooseCache ?? {
+    conn: null,
+    promise: null,
+};
+
+globalWithMongoose.mongooseCache = cached;
+
+export async function connectDb(): Promise<Mongoose> {
     if (cached.conn) return cached.conn;
 
     if (!cached.promise) {
