@@ -17,7 +17,8 @@ if (!DB_USER_NAME || !DB_PASSWORD) {
     throw new Error('MongoDB credentials are missing');
 }
 
-const uri = `mongodb+srv://root:IZ1HKg6exYuZQRF5@cluster0.fhosm.mongodb.net/?appName=Cluster0`;
+const uri = "mongodb+srv://tgapp:9tGMh4jcOJRQA3MP@cluster0.fhosm.mongodb.net/?appName=Cluster0";
+// "mongodb+srv://tgapp:9tGMh4jcOJRQA3MP@cluster0.fhosm.mongodb.net/?appName=Cluster0"
 
 // const options = {
 //     serverApi: {
