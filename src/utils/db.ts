@@ -45,7 +45,7 @@ export const connectDb = async () => {
 
 // const { MongoClient } = require('mongodb')
 
-export { clientPromise };
+// export { clientPromise };
 
 
 

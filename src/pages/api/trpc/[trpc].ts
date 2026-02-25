@@ -1,10 +1,10 @@
 import { createNextApiHandler } from '@trpc/server/adapters/next';
 import { router } from '@/utils/api';
 import { bot } from '@/utils/bot';
-// import { connectDb } from '@/utils/db';
+import { connectDb } from '@/utils/db';
 
 // Подключаемся к базе данных
-// void connectDb().catch((err) => console.error('MongoDB connection error:', err));
+void connectDb().catch((err) => console.error('MongoDB connection error:', err));
 
 
 
