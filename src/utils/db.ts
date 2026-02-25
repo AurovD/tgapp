@@ -1,47 +1,69 @@
-
-import {MongoClient, ServerApiVersion} from 'mongodb';
-
-const { DB_USER_NAME, DB_PASSWORD } = process.env;
-
-    if (!DB_USER_NAME || !DB_PASSWORD) {
-    throw new Error('MongoDB credentials are missing');
-}
+import mongoose from "mongoose";
 
 const uri = "mongodb+srv://tgapp:9tGMh4jcOJRQA3MP@cluster0.fhosm.mongodb.net/?appName=Cluster0";
 
-const options = {
-    serverApi: {
-        version: ServerApiVersion.v1,
-        strict: true,
-        deprecationErrors: true,
-    },
-};
+let cached = (global as any).mongoose;
 
-let client: MongoClient;
-let clientPromise: Promise<MongoClient>;
-
-declare global {
-    // eslint-disable-next-line no-var
-    var _mongoClientPromise: Promise<MongoClient> | undefined;
+if (!cached) {
+    cached = (global as any).mongoose = { conn: null, promise: null };
 }
 
-if (process.env.NODE_ENV === 'development') {
-    if (!global._mongoClientPromise) {
-        client = new MongoClient(uri, options);
-        global._mongoClientPromise = client.connect();
+export async function connectDb() {
+    if (cached.conn) return cached.conn;
+
+    if (!cached.promise) {
+        cached.promise = mongoose.connect(uri);
     }
-    clientPromise = global._mongoClientPromise;
-} else {
-    client = new MongoClient(uri, options);
-    clientPromise = client.connect();
+
+    cached.conn = await cached.promise;
+    return cached.conn;
 }
 
-export const connectDb = async () => {
-    await clientPromise;
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-    return client;
-};
+
+
+// import {MongoClient, ServerApiVersion} from 'mongodb';
+//
+// const { DB_USER_NAME, DB_PASSWORD } = process.env;
+//
+//     if (!DB_USER_NAME || !DB_PASSWORD) {
+//     throw new Error('MongoDB credentials are missing');
+// }
+//
+// const uri = "mongodb+srv://tgapp:9tGMh4jcOJRQA3MP@cluster0.fhosm.mongodb.net/?appName=Cluster0";
+//
+// const options = {
+//     serverApi: {
+//         version: ServerApiVersion.v1,
+//         strict: true,
+//         deprecationErrors: true,
+//     },
+// };
+//
+// let client: MongoClient;
+// let clientPromise: Promise<MongoClient>;
+//
+// declare global {
+//     // eslint-disable-next-line no-var
+//     var _mongoClientPromise: Promise<MongoClient> | undefined;
+// }
+//
+// if (process.env.NODE_ENV === 'development') {
+//     if (!global._mongoClientPromise) {
+//         client = new MongoClient(uri, options);
+//         global._mongoClientPromise = client.connect();
+//     }
+//     clientPromise = global._mongoClientPromise;
+// } else {
+//     client = new MongoClient(uri, options);
+//     clientPromise = client.connect();
+// }
+//
+// export const connectDb = async () => {
+//     await clientPromise;
+//     await client.db("admin").command({ ping: 1 });
+//     console.log("Pinged your deployment. You successfully connected to MongoDB!");
+//     return client;
+// };
 
 // const { MongoClient } = require('mongodb')
 

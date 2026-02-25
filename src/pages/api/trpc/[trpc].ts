@@ -4,7 +4,7 @@ import { bot } from '@/utils/bot';
 import { connectDb } from '@/utils/db';
 
 // Подключаемся к базе данных
-void connectDb().catch((err) => console.error('MongoDB connection error:', err));
+await connectDb().catch((err) => console.error('MongoDB connection error:', err));
 
 
 
