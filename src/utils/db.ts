@@ -10,65 +10,24 @@ const { DB_USER_NAME, DB_PASSWORD } = process.env;
 const uri = `mongodb+srv://root:FdSaXVhl8Zd8lGsf@cluster0.fhosm.mongodb.net/?appName=Cluster0`;
 
 
-// const uri2 =  `mongodb+srv://${process.env.DB_USER_NAME}:${process.env.DB_PASSWORD}@cluster0.fhosm.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority&appName=Cluster0`;
-
-const options = {
+const client = new MongoClient(uri, {
     serverApi: {
         version: ServerApiVersion.v1,
         strict: true,
         deprecationErrors: true,
-    },
-};
-
-let client: MongoClient;
-let clientPromise: Promise<MongoClient>;
-
-declare global {
-    // eslint-disable-next-line no-var
-    var _mongoClientPromise: Promise<MongoClient> | undefined;
-}
-
-if (process.env.NODE_ENV === 'development') {
-    if (!global._mongoClientPromise) {
-        client = new MongoClient(uri, options);
-        global._mongoClientPromise = client.connect();
     }
-    clientPromise = global._mongoClientPromise;
-} else {
-    client = new MongoClient(uri, options);
-    clientPromise = client.connect();
+});
+async function run() {
+    try {
+        // Connect the client to the server	(optional starting in v4.7)
+        await client.connect();
+        // Send a ping to confirm a successful connection
+        await client.db("admin").command({ ping: 1 });
+        console.log("Pinged your deployment. You successfully connected to MongoDB!");
+    } finally {
+        // Ensures that the client will close when you finish/error
+        await client.close();
+    }
 }
-
-export const connectDb = async () => {
-    await clientPromise;
-    return client;
-};
-
-export { clientPromise };
-
-
-
-
-
-// import mongoose from 'mongoose';
-//
-// const { DB_USER_NAME, DB_PASSWORD } = process.env;
-//
-// if (!DB_USER_NAME || !DB_PASSWORD) {
-//     throw new Error("MongoDB credentials are missing");
-// }
-//
-// const uri = `mongodb+srv://${DB_USER_NAME}:${DB_PASSWORD}@cluster0.fhosm.mongodb.net/tgapp?retryWrites=true&w=majority`;
-//
-//
-// const connectDb = async () => {
-//     try {
-//         await mongoose.connect(uri);
-//         console.log("MongoDB connected successfully");
-//     } catch (err) {
-//         console.error("Failed to connect to MongoDB", err);
-//     }
-// };
-//
-// export { connectDb, mongoose };
+run().catch(console.dir);
 
