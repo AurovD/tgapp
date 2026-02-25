@@ -1,5 +1,5 @@
 import { Telegraf } from 'telegraf';
-import UserModel from '../models/userSchema';
+// import UserModel from '../models/userSchema';
 
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 
